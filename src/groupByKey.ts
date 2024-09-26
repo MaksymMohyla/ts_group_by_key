@@ -7,11 +7,12 @@ export function groupByKey<R extends object>(
   key: keyof R,
 ): GroupsMap<R> {
   const result: GroupsMap<R> = {};
-
-  const valuesAll = items.map((it) => it[key]);
-  const uniqueValues = [...new Set(valuesAll)];
+  // array of unique values from items objects
+  const uniqueValues = [...new Set(items.map((it) => it[key]))];
 
   uniqueValues.forEach((val: string) => {
+    /* at each iteration result is being filled with key(unique key value) =
+    objects that has that value */
     result[val] = items.filter((item: R) => item[key] === val);
   });
 
