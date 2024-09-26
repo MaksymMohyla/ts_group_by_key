@@ -11,8 +11,8 @@ export function groupByKey<R extends object>(
   const valuesAll = items.map((it) => it[key]);
   const uniqueValues = [...new Set(valuesAll)];
 
-  uniqueValues.forEach((val) => {
-    result[val] = items.filter((item) => item[key] === val);
+  uniqueValues.forEach((val: string) => {
+    result[val] = items.filter((item: R) => item[key] === val);
   });
 
   return result;
